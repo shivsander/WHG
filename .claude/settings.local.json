@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find '/Users/tashivramsander/Library/CloudStorage/GoogleDrive-tash@eyeseagreen.com/My Drive/aa/Eyesea/Platform/Agents/WHG/WHG_data' -name *.csv -type f)",
+      "Bash(curl -s https://www.google.com/search?q=CIBSE+damp+mould+risk+thresholds+relative+humidity+social+housing+monitoring+temperature)",
+      "Bash(curl -s https://www.google.com/search?q=CIBSE+TM59+TM52+overheating+criteria+thresholds+temperature+25+28+degrees)",
+      "Bash(curl -s https://www.google.com/search?q=WHO+NICE+guidelines+minimum+indoor+temperature+fuel+poverty+HHSRS+excess+cold)",
+      "Bash(curl -s https://www.google.com/search?q=CO2+ventilation+proxy+thresholds+1000ppm+1500ppm+indoor+air+quality+social+housing)",
+      "Bash(curl -s https://www.google.com/search?q=Switchee+Aico+HomeLink+Sensorhub+Guru+Pinpoint+iOpt+social+housing+monitoring+metrics+thresholds)",
+      "WebSearch",
+      "Bash(python3 -c \":*)",
+      "Bash(python3 analyse.py)",
+      "Bash(open:*)"
+    ]
+  }
+}
