@@ -72,12 +72,19 @@ tr:hover{background:var(--n200)}tr:last-child td{border-bottom:none}
 .donut-box canvas{max-height:180px}
 h3{font-weight:700;color:var(--n800);letter-spacing:-.25px}
 @media (max-width:900px){.chart-row,.donut-row{grid-template-columns:1fr}.tiles{grid-template-columns:1fr 1fr}.hdr{padding:20px}.ctr{padding:16px}}
-</style></head><body>
+</style>
+<script>
+(function(){
+if(sessionStorage.getItem('whg-auth')==='1')return;
+document.write('<style>body>*:not(#pw-gate):not(script){display:none!important}</style>');
+})();
+</script>
+</head><body>
 <div id="pw-gate" style="position:fixed;inset:0;z-index:99999;background:linear-gradient(135deg,#0b0e2c 0%,#1045cc 50%,#028cff 100%);display:flex;align-items:center;justify-content:center">
 <div style="background:#fff;border-radius:16px;padding:40px 36px;max-width:380px;width:90%;box-shadow:0 8px 32px rgba(0,0,0,.3);text-align:center">
 <h2 style="font-family:Inter,sans-serif;font-size:22px;font-weight:700;color:#0b0e2c;margin-bottom:6px">WHG Dashboard</h2>
 <p style="font-family:Inter,sans-serif;font-size:13px;color:#6f7182;margin-bottom:24px">Enter password to continue</p>
-<input id="pw-input" type="password" placeholder="Password" style="width:100%;padding:12px 16px;border:1px solid #e9eaf3;border-radius:8px;font-size:14px;font-family:Inter,sans-serif;outline:none;margin-bottom:12px" onkeydown="if(event.key==='Enter')document.getElementById('pw-btn').click()">
+<input id="pw-input" type="password" placeholder="Password" autofocus style="width:100%;padding:12px 16px;border:1px solid #e9eaf3;border-radius:8px;font-size:14px;font-family:Inter,sans-serif;outline:none;margin-bottom:12px" onkeydown="if(event.key==='Enter')document.getElementById('pw-btn').click()">
 <button id="pw-btn" onclick="checkPw()" style="width:100%;padding:12px;background:#028cff;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:600;font-family:Inter,sans-serif;cursor:pointer">Enter</button>
 <p id="pw-err" style="font-family:Inter,sans-serif;font-size:12px;color:#dc2b2b;margin-top:10px;display:none">Incorrect password</p>
 </div>
@@ -90,8 +97,15 @@ const h=await sha256(v);
 if(h==='cd3f1fc8d724ee7a7046733a9f6c33cee8d46390ddea230f642a9b8424789bda'){unlockPage();return;}
 document.getElementById('pw-err').style.display='block';document.getElementById('pw-input').value='';
 }
-function unlockPage(){document.getElementById('pw-gate').remove();sessionStorage.setItem('whg-auth','1');}
-if(sessionStorage.getItem('whg-auth')==='1'){document.addEventListener('DOMContentLoaded',function(){var g=document.getElementById('pw-gate');if(g)g.remove();});}
+function unlockPage(){
+document.getElementById('pw-gate').remove();
+sessionStorage.setItem('whg-auth','1');
+var hidden=document.querySelectorAll('body>*');
+hidden.forEach(function(el){el.style.removeProperty('display');});
+var injected=document.querySelector('style');
+if(injected&&injected.textContent.indexOf('pw-gate')>-1)injected.remove();
+location.reload();
+}
 </script>
 <div class="hdr"><h1>WHG Environmental Monitoring Dashboard</h1>
 <p>Social Housing Portfolio Analysis &mdash; 32 Properties &mdash; Generated 25 March 2026</p></div>
