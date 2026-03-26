@@ -10,7 +10,11 @@
       "WebSearch",
       "Bash(python3 -c \":*)",
       "Bash(python3 analyse.py)",
-      "Bash(open:*)"
+      "Bash(open:*)",
+      "Bash(gh api:*)",
+      "Bash(where gh:*)",
+      "Bash(wc:*)",
+      "Bash(tail:*)"
     ]
   }
 }
