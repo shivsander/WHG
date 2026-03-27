@@ -98,13 +98,10 @@ if(h==='cd3f1fc8d724ee7a7046733a9f6c33cee8d46390ddea230f642a9b8424789bda'){unloc
 document.getElementById('pw-err').style.display='block';document.getElementById('pw-input').value='';
 }
 function unlockPage(){
-document.getElementById('pw-gate').remove();
 sessionStorage.setItem('whg-auth','1');
-var hidden=document.querySelectorAll('body>*');
-hidden.forEach(function(el){el.style.removeProperty('display');});
-var injected=document.querySelector('style');
-if(injected&&injected.textContent.indexOf('pw-gate')>-1)injected.remove();
-location.reload();
+document.getElementById('pw-gate').remove();
+var ss=document.querySelectorAll('style');
+ss.forEach(function(s){if(s.textContent.indexOf('pw-gate')>-1)s.remove();});
 }
 </script>
 <div class="hdr"><h1>WHG Environmental Monitoring Dashboard</h1>
